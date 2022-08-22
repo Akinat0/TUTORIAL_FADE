@@ -29,6 +29,7 @@
   <td id="projectalign">
    <div id="projectname">UI Tutorial Fade<span id="projectnumber">&#160;1.0.0</span>
    </div>
+   <div id="projectbrief">https://assetstore.unity.com/packages/slug/230845</div>
   </td>
  </tr>
  </tbody>
@@ -92,6 +93,9 @@ $(document).ready(function(){initNavTree('class_abu_1_1_tutorial_fade_image.html
   <div class="headertitle"><div class="title">Abu.TutorialFadeImage Class Reference</div></div>
 </div><!--header-->
 <div class="contents">
+
+<p>Component which will render added holes in UI.  
+ <a href="class_abu_1_1_tutorial_fade_image.html#details">More...</a></p>
 <div class="dynheader">
 Inheritance diagram for Abu.TutorialFadeImage:</div>
 <div class="dyncontent">
@@ -102,10 +106,13 @@ Inheritance diagram for Abu.TutorialFadeImage:</div>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a44ceef95f60371dfb9811d8391b86c4c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abu_1_1_tutorial_fade_image.html#a44ceef95f60371dfb9811d8391b86c4c">AddHole</a> (<a class="el" href="class_abu_1_1_tutorial_hole.html">TutorialHole</a> hole)</td></tr>
+<tr class="memdesc:a44ceef95f60371dfb9811d8391b86c4c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Each added tutorial hole will be rendered on this FadeImage.  <a href="class_abu_1_1_tutorial_fade_image.html#a44ceef95f60371dfb9811d8391b86c4c">More...</a><br /></td></tr>
 <tr class="separator:a44ceef95f60371dfb9811d8391b86c4c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a1f204aca7b4bd153e618826a91217146"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abu_1_1_tutorial_fade_image.html#a1f204aca7b4bd153e618826a91217146">RemoveHole</a> (<a class="el" href="class_abu_1_1_tutorial_hole.html">TutorialHole</a> hole)</td></tr>
+<tr class="memdesc:a1f204aca7b4bd153e618826a91217146"><td class="mdescLeft">&#160;</td><td class="mdescRight">Removed tutorial hole won't rendered on this FadeImage.  <a href="class_abu_1_1_tutorial_fade_image.html#a1f204aca7b4bd153e618826a91217146">More...</a><br /></td></tr>
 <tr class="separator:a1f204aca7b4bd153e618826a91217146"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a118d9173232cf03bffd91a24eb0958bd"><td class="memItemLeft" align="right" valign="top">override bool&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abu_1_1_tutorial_fade_image.html#a118d9173232cf03bffd91a24eb0958bd">IsRaycastLocationValid</a> (Vector2 eventPosition, Camera eventCamera)</td></tr>
+<tr class="memdesc:a118d9173232cf03bffd91a24eb0958bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Used to pass events within holes and prevent other events.  <a href="class_abu_1_1_tutorial_fade_image.html#a118d9173232cf03bffd91a24eb0958bd">More...</a><br /></td></tr>
 <tr class="separator:a118d9173232cf03bffd91a24eb0958bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pro-methods" name="pro-methods"></a>
@@ -118,11 +125,15 @@ Protected Member Functions</h2></td></tr>
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="properties" name="properties"></a>
 Properties</h2></td></tr>
 <tr class="memitem:a2d6c7a8b0ad4b7ed06040ff014bd8684"><td class="memItemLeft" align="right" valign="top">override Material&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abu_1_1_tutorial_fade_image.html#a2d6c7a8b0ad4b7ed06040ff014bd8684">material</a><code> [get]</code></td></tr>
+<tr class="memdesc:a2d6c7a8b0ad4b7ed06040ff014bd8684"><td class="mdescLeft">&#160;</td><td class="mdescRight">Material to render shader.  <a href="class_abu_1_1_tutorial_fade_image.html#a2d6c7a8b0ad4b7ed06040ff014bd8684">More...</a><br /></td></tr>
 <tr class="separator:a2d6c7a8b0ad4b7ed06040ff014bd8684"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a8c388dcc717d0ec5d5502a047204f4de"><td class="memItemLeft" align="right" valign="top">float&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="class_abu_1_1_tutorial_fade_image.html#a8c388dcc717d0ec5d5502a047204f4de">Smoothness</a><code> [get, set]</code></td></tr>
+<tr class="memdesc:a8c388dcc717d0ec5d5502a047204f4de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Hole edge smoothness (i.e.  <a href="class_abu_1_1_tutorial_fade_image.html#a8c388dcc717d0ec5d5502a047204f4de">More...</a><br /></td></tr>
 <tr class="separator:a8c388dcc717d0ec5d5502a047204f4de"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
-<h2 class="groupheader">Member Function Documentation</h2>
+<a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p >Component which will render added holes in UI. </p>
+</div><h2 class="groupheader">Member Function Documentation</h2>
 <a id="a44ceef95f60371dfb9811d8391b86c4c" name="a44ceef95f60371dfb9811d8391b86c4c"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a44ceef95f60371dfb9811d8391b86c4c">&#9670;&nbsp;</a></span>AddHole()</h2>
 
@@ -138,6 +149,14 @@ Properties</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Each added tutorial hole will be rendered on this FadeImage. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hole</td><td>The hole which will be rendered on fade image. Shouldn't be null.</td></tr>
+  </table>
+  </dd>
+</dl>
 
 </div>
 </div>
@@ -166,6 +185,16 @@ Properties</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
+
+<p>Used to pass events within holes and prevent other events. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">eventPosition</td><td></td></tr>
+    <tr><td class="paramname">eventCamera</td><td></td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd></dd></dl>
 
 </div>
 </div>
@@ -235,6 +264,16 @@ Properties</h2></td></tr>
       </table>
 </div><div class="memdoc">
 
+<p>Removed tutorial hole won't rendered on this FadeImage. </p>
+<p ><br  />
+ </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hole</td><td>The hole which won't be rendered on this fade image.</td></tr>
+  </table>
+  </dd>
+</dl>
+
 </div>
 </div>
 <h2 class="groupheader">Property Documentation</h2>
@@ -258,6 +297,9 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Material to render shader. </p>
+<p >Shader must support all parameters described above. </p>
+
 </div>
 </div>
 <a id="a8c388dcc717d0ec5d5502a047204f4de" name="a8c388dcc717d0ec5d5502a047204f4de"></a>
@@ -280,6 +322,9 @@ Properties</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
+<p>Hole edge smoothness (i.e. </p>
+<p >size of the hole). Should be greater then 0 </p>
+
 </div>
 </div>
 <hr/>The documentation for this class was generated from the following file:<ul>
@@ -291,7 +336,7 @@ Properties</h2></td></tr>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="namespace_abu.html">Abu</a></li><li class="navelem"><a class="el" href="class_abu_1_1_tutorial_fade_image.html">TutorialFadeImage</a></li>
-    <li class="footer">Generated on Mon Aug 22 2022 17:48:50 for UI Tutorial Fade by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4 </li>
+    <li class="footer">Generated on Mon Aug 22 2022 19:32:12 for UI Tutorial Fade by <a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.4 </li>
   </ul>
 </div>
 </body>
