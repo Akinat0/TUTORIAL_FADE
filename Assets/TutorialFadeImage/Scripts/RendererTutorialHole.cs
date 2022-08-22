@@ -66,7 +66,7 @@ namespace Abu
         /// <returns>Rect in world. Will return Rect.zero if Renderer or FadeImage or FadeImage.canvas or FadeImage.canvas.worldCamera are null.</returns>
         Rect CalculateRendererRect()
         {
-            if (FadeImage == null || FadeImage.canvas == null || FadeImage.canvas.worldCamera)
+            if (FadeImage == null || FadeImage.canvas == null || FadeImage.canvas.worldCamera == null)
                 return Rect.zero;
 
             Bounds bounds = Renderer.bounds;
