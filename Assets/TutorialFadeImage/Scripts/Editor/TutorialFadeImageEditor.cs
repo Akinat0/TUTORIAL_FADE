@@ -3,6 +3,9 @@ namespace Abu
     using UnityEditor;
     using UnityEditor.UI;
 
+    /// <summary>
+    /// Custom editor for TutorialFadeImage.
+    /// </summary>
     [CustomEditor(typeof(TutorialFadeImage))]
     public class TutorialFadeImageEditor : ImageEditor
     {
