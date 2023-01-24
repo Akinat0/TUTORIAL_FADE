@@ -34,15 +34,21 @@
         const int HolesSize = 5;
         
         readonly List<TutorialHole> Holes = new List<TutorialHole>(HolesSize);
-        
-        Material cachedMaterial;
 
         /// <summary>
         /// Material to render shader. Shader must support all parameters described above.
         /// </summary>
-        public override Material material =>
-            cachedMaterial ? cachedMaterial : cachedMaterial = new Material(Shader.Find("UI/TutorialFade"));
-        
+        public override Material material
+        {
+            get
+            {
+                if (m_Material == null)
+                    m_Material = new Material(Shader.Find("UI/TutorialFade"));
+
+                return m_Material;
+            }
+        }
+
         bool isDirty;
 
         readonly Vector4[] holesBuffer = new Vector4[HolesSize];
@@ -72,15 +78,7 @@
             
             UpdateMaterialData();
         }
-        
-        protected override void OnDestroy()
-        {
-            base.OnDestroy();
 
-            if (cachedMaterial != null)
-                DestroyImmediate(cachedMaterial);
-        }
-        
         protected override void OnDidApplyAnimationProperties()
         {
             base.OnDidApplyAnimationProperties();
@@ -93,7 +91,7 @@
         protected override void OnValidate()
         {
             base.OnValidate();
-
+            
             SetDirtyMaterial();
         }
 
