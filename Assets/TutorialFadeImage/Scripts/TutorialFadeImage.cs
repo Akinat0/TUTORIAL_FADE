@@ -43,7 +43,20 @@
             get
             {
                 if (m_Material == null)
-                    m_Material = new Material(Shader.Find("UI/TutorialFade"));
+                {
+#if UNITY_EDITOR
+                    //we should be sure that shader added to always included list 
+                    AddAlwaysIncludedShader();    
+#endif
+                    
+                    Shader shader = Shader.Find("UI/TutorialFade");
+                    
+                    //this error could happen in runtime if shader was not added to always include list. The other thing is that shader could be renamed.
+                    if (shader == null)
+                        Debug.LogError("[UITutorialFade] Shader \"UI/TutorialFade\" doesn't exist. Probably it's not added to always include shaders list");
+                    
+                    m_Material = new Material(shader);
+                }
 
                 return m_Material;
             }
@@ -85,33 +98,6 @@
 
             SetDirtyMaterial();
         }
-
-#if UNITY_EDITOR
-
-        protected override void OnValidate()
-        {
-            base.OnValidate();
-            
-            SetDirtyMaterial();
-        }
-
-        [UnityEditor.MenuItem("GameObject/UI/Tutorial Fade Image", false)]
-        static void Create()
-        {
-            GameObject gameObject = new GameObject("Tutorial Fade", typeof(TutorialFadeImage));
-            gameObject.transform.SetParent(UnityEditor.Selection.activeTransform);
-            
-            RectTransform rectTransform = gameObject.GetComponent<RectTransform>();
-            rectTransform.anchorMin = Vector2.zero;
-            rectTransform.anchorMax = Vector2.one;
-            rectTransform.offsetMin = Vector2.zero;
-            rectTransform.offsetMax = Vector2.zero;
-
-            TutorialFadeImage image = gameObject.GetComponent<TutorialFadeImage>();
-            image.color = new Color(0f, 0f, 0f, 0.39f);
-        }
-
-#endif
 
         /// <summary>
         /// Each added tutorial hole will be rendered on this FadeImage. 
@@ -175,7 +161,7 @@
                 return;
 
             if (Holes.Count > HolesSize)
-                Debug.LogError($"Max holes size is {HolesSize}");
+                Debug.LogError($"[UITutorialFade] Max holes size is {HolesSize}");
 
             material.SetInt(HolesLengthID, Holes.Count);
             material.SetFloat(SmoothnessID, smoothness);
@@ -220,6 +206,73 @@
         static float Remap(float value, float from1, float to1, float from2, float to2)
             => (value - from1) / (to1 - from1) * (to2 - from2) + from2;
 
+        
+#if UNITY_EDITOR
+
+        protected override void OnValidate()
+        {
+            base.OnValidate();
+            AddAlwaysIncludedShader();
+            SetDirtyMaterial();
+        }
+
+        [UnityEditor.MenuItem("GameObject/UI/Tutorial Fade Image", false)]
+        static void Create()
+        {
+            GameObject gameObject = new GameObject("Tutorial Fade", typeof(TutorialFadeImage));
+            gameObject.transform.SetParent(UnityEditor.Selection.activeTransform);
+            
+            RectTransform rectTransform = gameObject.GetComponent<RectTransform>();
+            rectTransform.anchorMin = Vector2.zero;
+            rectTransform.anchorMax = Vector2.one;
+            rectTransform.offsetMin = Vector2.zero;
+            rectTransform.offsetMax = Vector2.zero;
+
+            TutorialFadeImage image = gameObject.GetComponent<TutorialFadeImage>();
+            image.color = new Color(0f, 0f, 0f, 0.39f);
+        }
+        
+        static void AddAlwaysIncludedShader()
+        {
+            string shaderName = "UI/TutorialFade";
+            
+            Shader shader = Shader.Find(shaderName);
+            
+            if (shader == null)
+                return;
+ 
+            UnityEngine.Rendering.GraphicsSettings graphicsSettingsObj = UnityEditor.AssetDatabase.LoadAssetAtPath<UnityEngine.Rendering.GraphicsSettings>("ProjectSettings/GraphicsSettings.asset");
+            UnityEditor.SerializedObject serializedObject = new UnityEditor.SerializedObject(graphicsSettingsObj);
+            UnityEditor.SerializedProperty arrayProp = serializedObject.FindProperty("m_AlwaysIncludedShaders");
+            
+            bool hasShader = false;
+            
+            for (int i = 0; i < arrayProp.arraySize; ++i)
+            {
+                UnityEditor.SerializedProperty arrayElem = arrayProp.GetArrayElementAtIndex(i);
+                if (shader == arrayElem.objectReferenceValue)
+                {
+                    hasShader = true;
+                    break;
+                }
+            }
+ 
+            if (!hasShader)
+            {
+                int arrayIndex = arrayProp.arraySize;
+                arrayProp.InsertArrayElementAtIndex(arrayIndex);
+                UnityEditor.SerializedProperty arrayElem = arrayProp.GetArrayElementAtIndex(arrayIndex);
+                arrayElem.objectReferenceValue = shader;
+ 
+                serializedObject.ApplyModifiedProperties();
+ 
+                UnityEditor.AssetDatabase.SaveAssets();
+                
+                Debug.Log("[UITutorialFade] Shader \"UI/TutorialFade\" has been added to always include shaders list. It's important. Don't delete it.");
+            }
+        }
+        
+#endif
     }
 }
 
