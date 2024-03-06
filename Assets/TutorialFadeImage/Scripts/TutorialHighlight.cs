@@ -16,6 +16,31 @@ namespace Abu
         [SerializeField] 
         [Tooltip("Automatically finds TutorialFadeImage in active scene. So it can't be null if there is any TutorialFadeImage in the scene. To stop rendering hole use component's enabled flag.")] 
         TutorialFadeImage tutorialFade;
+
+        /// <summary>
+        /// TutorialFadeImage to render hole.
+        /// Note: Required to be set manually if object is created during runtime.
+        /// </summary>
+        public TutorialFadeImage TutorialFade
+        {
+            get => tutorialFade;
+            set
+            {
+                //do nothing if tutorialFade the same as new
+                if(tutorialFade == value)
+                    return;
+                
+                //unregister tutorial hole from prev tutorialFade 
+                if(tutorialFade != null)
+                    tutorialFade.RemoveHole(Hole);
+                
+                tutorialFade = value;
+                
+                //register tutorial hole with new tutorialFade
+                if(tutorialFade != null)
+                    tutorialFade.AddHole(Hole);
+            }
+        }
         
         TutorialHole hole;
 
@@ -60,6 +85,12 @@ namespace Abu
 
         void OnValidate()
         {
+            // I don't wont to confuse people that they can add
+            // new TutorialHighlight while they are playing in editor
+            // without setting tutorialFade 
+            if(Application.isPlaying)
+                return;
+            
             if (tutorialFade == null)
                 tutorialFade = FindObjectOfType<TutorialFadeImage>();
             
