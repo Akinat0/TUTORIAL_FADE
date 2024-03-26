@@ -17,11 +17,12 @@ Moreover, __TutorialFadeImage__ will prevent clicking on any zone except these "
 3. To enable/disable hole you can enable/disable either __Tutorial Highlight__ component or game object this component attached to.
 4. You're awesome! ❤️
 
-## Issues:
+## Limitations:
+1. __Tutorial Fade Image__ supports rotating camera only with __Overlay__ canvas!!! 
 
 ### Overlay canvases
-While using __RendererTutorialHole__ or just attaching __Tutorial Highlight__ component to renderer (not UI element) it's recommended to not use Canvases with render type __Overlay__.
-Actually you can use __Overlay__ canvas, but it's important to add camera to them. For that you can change canvas render mode to __Camera__, then select your __Main Camera__ in appeared field and then change your canvas render mode back to __Overlay__.
+While using __RendererTutorialHole__ or just attaching __Tutorial Highlight__ component to renderer (not UI element) it's recommended to use Canvases with render type __Overlay__.
+But it's important to add camera to them. For that you can change canvas render mode to __Camera__, then select your __Main Camera__ in appeared field and then change your canvas render mode back to __Overlay__.
 
 ## Max holes count
 By default max holes size is set to 5. If you will try to create more holes, they won't appear and you will receive error message in console. However if you need, you can change this value. It is an advanced tip, because extending max holes count means changing source file, however if your lead instructions everything will be ok.

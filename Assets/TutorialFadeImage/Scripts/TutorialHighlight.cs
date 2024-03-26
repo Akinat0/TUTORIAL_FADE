@@ -18,6 +18,22 @@ namespace Abu
         TutorialFadeImage tutorialFade;
 
         /// <summary>
+        /// Hole scale. Useful for animations and tweaking.
+        /// </summary>
+        [SerializeField]
+        [Tooltip("Hole scale. Useful for animations and tweaking.")]
+        float holeScale = 1;
+
+        /// <summary>
+        /// Hole scale. Useful for animations and tweaking.
+        /// </summary>
+        public float HoleScale
+        {
+            get => holeScale;
+            set => holeScale = value;
+        }
+        
+        /// <summary>
         /// TutorialFadeImage to render hole.
         /// Note: Required to be set manually if object is created during runtime.
         /// </summary>
@@ -55,8 +71,8 @@ namespace Abu
                 {
                     if(TryGetComponent(out RectTransform rectTransform))
                         hole = new RectTransformTutorialHole(rectTransform);
-                    else if (TryGetComponent(out Renderer rendererComponent) && tutorialFade != null)
-                        hole = new RendererTutorialHole(rendererComponent, tutorialFade);
+                    else if (TryGetComponent(out Renderer rendererComponent) && TutorialFade != null)
+                        hole = new RendererTutorialHole(rendererComponent, TutorialFade);
                 }
 
                 return hole;
@@ -65,20 +81,20 @@ namespace Abu
 
         void OnEnable()
         {
-            if(tutorialFade != null)
-                tutorialFade.AddHole(Hole);
+            if(TutorialFade != null)
+                TutorialFade.AddHole(Hole);
         }
 
         void OnDisable()
         {
-            if(tutorialFade != null)
-                tutorialFade.RemoveHole(Hole);
+            if(TutorialFade != null)
+                TutorialFade.RemoveHole(Hole);
         }
 
         void OnDestroy()
         {
-            if(tutorialFade != null)
-                tutorialFade.RemoveHole(Hole);
+            if(TutorialFade != null)
+                TutorialFade.RemoveHole(Hole);
         }
 
 #if UNITY_EDITOR
@@ -91,11 +107,11 @@ namespace Abu
             if(Application.isPlaying)
                 return;
             
-            if (tutorialFade == null)
-                tutorialFade = FindObjectOfType<TutorialFadeImage>();
+            if (TutorialFade == null)
+                TutorialFade = FindObjectOfType<TutorialFadeImage>();
             
             if(isActiveAndEnabled && tutorialFade != null)
-                tutorialFade.AddHole(Hole);
+                TutorialFade.AddHole(Hole);
         }
 #endif
     }

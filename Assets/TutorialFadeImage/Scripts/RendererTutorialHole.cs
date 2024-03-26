@@ -3,7 +3,7 @@ namespace Abu
     using UnityEngine;
 
     /// <summary>
-    /// Tutorial hole which calculates world rect based on Renderer.bounds. <b>It's not recommended to use overlay canvas for this type of tutorial hole.</b>
+    /// Tutorial hole which calculates world rect based on Renderer.bounds.
     /// For world rect calculation FadeImage should be attached to canvas with camera.
     /// If you're using canvas Overlay render mode you still should serialize camera via debug inspector.
     /// </summary>
@@ -14,7 +14,7 @@ namespace Abu
         /// </summary>
         /// <param name="renderer">Renderer which bounds will be used for world rect calculation.</param>
         /// <param name="fadeImage">Fade image which will be used for hole rendering. For world rect calculation FadeImage should be attached to canvas with camera.
-        /// If you're using canvas Overlay render mode you still should serialize camera via debug inspector. However it's not recommended to use overlay canvas for this type of tutorial hole</param>
+        /// If you're using canvas Overlay render mode you still should serialize camera via debug inspector. </param>
         /// <param name="isAutoUpdate">Should world rect be auto updated every frame, or developer will manually update it to achieve better performance.</param>
         public RendererTutorialHole(Renderer renderer, TutorialFadeImage fadeImage, bool isAutoUpdate = true) : base(
             isAutoUpdate)
